@@ -1,8 +1,10 @@
 from automate.bot import AutomatedBot
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
 from rest_framework import status
+from rest_framework.renderers import JSONRenderer
 
-
+@renderer_classes((JSONRenderer, ))
 def automate_api(request):
     bot = AutomatedBot("/app/automate/config.yaml", 'https://api-with-bot.herokuapp.com/api/sn/')
     res = []

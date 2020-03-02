@@ -2,6 +2,7 @@ import json
 import random as rnd
 import requests
 import yaml
+import string
 
 POST_DATA = [
     {'title': f'Random Title {i}', 'text': f'Random Desc {i}', 'likes': 0} for i in range(100)
@@ -77,9 +78,13 @@ class AutomatedBot:
         if 'users' in self.config_data.keys():
             result.append(f'Sign up {self.config_data["users"]} users')
             for i in range(self.config_data['users']):
+                st = ''
+                for i in range(7):
+                    st += rnd.choice(string.ascii_letters + string.digits)
+
                 payload = {
                     'password': f'Q2w3e4r{i}',
-                    'email': f'qwerty{i}@qwerty.com',
+                    'email': f'{st}{i}@qwerty.com',
                 }
                 self.request('user/create/', payload)
                 token = self.get_user_token(payload)

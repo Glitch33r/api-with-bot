@@ -4,7 +4,7 @@ from rest_framework import status
 
 
 def automate_api(request):
-    bot = AutomatedBot("../automate/config.yaml", 'https://api-with-bot.herokuapp.com/api/sn/')
+    bot = AutomatedBot("/app/automate/config.yaml", 'https://api-with-bot.herokuapp.com/api/sn/')
     res = []
     res.append(bot.get_config())
     res.append(
